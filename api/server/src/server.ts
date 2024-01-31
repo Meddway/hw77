@@ -2,13 +2,12 @@ import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import {addMessage, getMessages, Message} from "./db";
 import {upload} from "./multer";
-
-
-
+import cors from 'cors';
 
 const app = express();
 const port = 8000;
 
+app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
