@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMessage } from '../store/messagesSlice';
+import './MessagesForm.css';
 
 const MessagesForm: React.FC = () => {
   const dispatch = useDispatch();
-  const [author, setAuthor] = useState('');
-  const [message, setMessage] = useState('');
+  const [author, setAuthor] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
   const [image, setImage] = useState<File | null>(null);
 
   const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,21 +54,21 @@ const MessagesForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="message-form" encType="multipart/form-data">
       <div>
-        <label>
+        <label htmlFor="author">
           Author:
           <input type="text" value={author} onChange={handleAuthorChange} />
         </label>
       </div>
       <div>
-        <label>
+        <label htmlFor="message">
           Message:
           <input type="text" value={message} onChange={handleMessageChange} />
         </label>
       </div>
       <div>
-        <label>
+        <label htmlFor="image">
           Image:
           <input type="file" onChange={handleImageChange} />
         </label>
